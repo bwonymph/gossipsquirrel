@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body onload="test2()">
+
+<h1>Test page</h1>
+<button onclick= "test()">test</button>
+</body>
+
+
+<script>
+function test(){
+	console.log("test1");
+	document.addEventListener('csEvent', function(event) {
+	var data = event.detail;
+	console.log("test");
+	console.log(data);
+	});
+}
+
+
+function test2(){
+	chrome.runtime.onMessageExternal.addListener(
+	  function(request, sender, sendResponse) {
+	    var msg12 = "hi";
+	    return msg12;
+	});
+}
+
+// Listen you CRX event
+document.addEventListener('csEvent', function (event) {
+    var data = event.detail;
+
+   console.log(data);
+});
+</script>
+</html>
