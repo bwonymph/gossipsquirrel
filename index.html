@@ -11,10 +11,16 @@
     <title>I Love Cats</title>
   </head>
   <body> <!-- in application you would serve from backend. not client side as data would show-->
-    <div class = "container">
+    <div class = "container" id = "main" style="display:visible;">
       <h1>I hate Hedera!</h1>
       <h2>I really don't like HBAR</h2>
       <p>This is a website dedicated to disliking HBAR and Hedera. No moon only memes</p>
+    </div>
+
+    <div class ="container" id = "secret" style="display: none;">
+      <h1>Welcome to the secret club</h1>
+      <h2>Made only available through Gossip Squrrel</h2>
+      <p>Hidden in the same page of the I hate Hedera page using HTS tokens for authentication to serve different content!</p>
     </div>
 
 
@@ -28,14 +34,23 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="app.js"></script>
+    <script src="bundle.js" type="text/javascript"></script>
     <script>
       // Listen you CRX event
-      document.addEventListener('csEvent', function (event) {
-          var data = event.detail;
 
-         console.log(data);
+      document.addEventListener('csEvent', function (event) {
+        var data = event.detail;
+
+         var HHac = data.account; //POC just matching account, actual token match in app.js ... USE APP.js in prod
+         // console.log(HHac);
+
+         if (HHac = "0.0.950"){
+          console.log("match");
+          document.getElementById("main").style.display="none";
+          document.getElementById("secret").style.display="";
+         }
+
       });
-    </script>
+          </script>
   </body>
 </html>
